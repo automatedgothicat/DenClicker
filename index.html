@@ -1,0 +1,48 @@
+<!-- https://onecompiler.com/html/42adqtczk -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker</title>
+</head>
+<body>
+    <h2>Clicker genérico!</h2>
+    <p>Dinheirinho: <span id="money">0</span></p>
+    <img id="clickerImg" alt="Den from Slay the Princess" src="den.jpg" onclick="clicking()" width="200" height="200">
+</body>
+<script>
+    let money = 0;
+    let mpc = 1;
+    let mpcCost = 10;
+    let mps = 1;
+    let mpsCost = 20;
+
+    const moneyDisplay = document.getElementById("money");
+    const mpcDisplay = document.getElementById("mpc");
+    const mpcCostDisplay = document.getElementById("mpcCost");
+    const mpsDisplay = document.getElementById("mps");
+    const mpsCostDisplay = document.getElementById("mpsCost");
+
+    function updateDisplay() {
+        moneyDisplay.textContent = money;
+        mpcDisplay.textContent = mpc;
+        mpcCostDisplay.textContent = mpcCost;
+        mpsDisplay.textContent = mps;
+        mpsCostDisplay.textContent = mpsCost;
+    }
+
+    function clicking(){
+        money += mpc;
+        updateDisplay();
+    }
+
+    setInterval(function() {
+      money += mps;
+      updateDisplay();
+    }, 1000);
+
+    updateDisplay();
+</script>
+</html>
