@@ -11,6 +11,14 @@
     <h2>Clicker genérico!</h2>
     <p>Dinheirinho: <span id="money">0</span></p>
     <img id="clickerImg" alt="Den from Slay the Princess" src="den.jpg" onclick="clicking()" width="200" height="200">
+
+    <div id="shopContainer">
+        <h2>Shop</h2>
+        <p>Money per Click: <span id="mpc">1</span></p>
+        <button onclick="upgradeMPC()">Upgrade MPC (Cost: <span id="mpcCost">10</span> money)</button>
+        <p>Money per Second: <span id="mps">0</span></p>
+        <button onclick="buyMPS()">Buy MPS (Cost: <span id="mpsCost">50</span> money)</button>
+    </div>
 </body>
 <script>
     let money = 0;
@@ -43,6 +51,32 @@
       updateDisplay();
     }, 1000);
 
-    updateDisplay();
+    function upgradeMPC() {
+      if (money >= mpcCost) {
+        money -= mpcCost;
+        mpc++; // Increase MPC
+        mpcCost *= 2; // Increase cost for next upgrade
+        updateDisplay();
+      } else {
+        alert("Not enough money to upgrade!");
+      }
+    }
+
+    function buyMPS() {
+      if (money >= mpsCost) {
+        money -= mpsCost;
+        mps++; // Increase MPS
+        mpsCost *= 2; // Increase cost for next purchase
+        // Automatically add money every second
+        setInterval(function() {
+          money += mps;
+          updateDisplay();
+        }, 1000);
+        updateDisplay();
+      } else {
+        alert("Not enough money to buy MPS!");
+      }
+    }
+
 </script>
 </html>
